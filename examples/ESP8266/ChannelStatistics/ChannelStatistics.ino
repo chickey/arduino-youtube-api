@@ -17,12 +17,11 @@ char password[] = "yyyy";  // your network key
 #define API_KEY "zzzz"  // your google apps API Token
 #define CHANNEL_ID "UCezJOfu7OtqGzd5xrP3q6WA" // makes up the url of channel
 
-
 WiFiClientSecure client;
 YoutubeApi api(API_KEY, client);
 
-unsigned long api_mtbs = 60000; //mean time between api requests
-unsigned long api_lasttime = 60001;   //last time api request has been done
+unsigned long api_mtbs = 600000; //mean time between api requests
+unsigned long api_lasttime = 600001;   //last time api request has been done
 
 long subs = 0;
 
@@ -52,7 +51,7 @@ void setup() {
   IPAddress ip = WiFi.localIP();
   Serial.println(ip);
 
-
+  client.setInsecure();
 }
 
 void loop() {
@@ -75,8 +74,8 @@ void loop() {
       Serial.println("------------------------");
 
     }
-	
-	/* This has a cost of 100 for every call so commented out by default
+	/*Serial.println("Checking Live Status");
+	//This has a cost of 100 for every call so commented out by default
 	if(api.getChannelLive(CHANNEL_ID))
     {
       Serial.println("---------Live---------");
@@ -84,10 +83,8 @@ void loop() {
       if (api.channelStats.channellive) {
         channelstatus="Live";
       } else channelstatus="Offline";
-      Serial.println(channelstatus);   8   
-    }
-	*/
-	
+      Serial.println(channelstatus);      
+    }*/
     api_lasttime = millis();
   }
 }

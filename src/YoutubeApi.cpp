@@ -52,7 +52,6 @@ String YoutubeApi::sendGetToYoutube(String command) {
 				avail = finishedHeaders;
 				char c = client->read();
 				//Serial.write(c);
-
 				if(!finishedHeaders){
 					if (currentLineIsBlank && c == '\n') {
 						finishedHeaders = true;
@@ -116,7 +115,7 @@ bool YoutubeApi::getChannelStatistics(String channelId){
 }
 
 bool YoutubeApi::getChannelLive(String channelId){
-	String command="https://" YTAPI_HOST "/youtube/v3/search?part=snippet&channelId="+channelId+"&eventType=live&maxResults=1&type=video"; //If you can't find it(for example if you have a custom url) look here: https://www.youtube.com/account_advanced
+	String command="/youtube/v3/search?part=snippet&channelId="+channelId+"&eventType=live&maxResults=1&type=video"; //If you can't find it(for example if you have a custom url) look here: https://www.youtube.com/account_advanced
 	//Serial.println(command);
 	String response = sendGetToYoutube(command);       //recieve reply from youtube
 	DynamicJsonBuffer jsonBuffer;

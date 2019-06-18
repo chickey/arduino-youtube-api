@@ -53,7 +53,7 @@ class YoutubeApi
   private:
     String _apiKey;
     Client *client;
-    const int maxMessageLength = 2000;
+    const int maxMessageLength = 5000;
     bool checkForOkResponse(String response);
     void closeClient();
 };
